@@ -1,0 +1,14 @@
+{
+  "name": "UnverifiedDeployerFinder",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Nicca42/UnverifiedDeployerFinder.git",
+  "author": "Veronica <veronica.21.coutts@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "ethers": "^5.5.1",
+    "node-fetch": "^3.0.0"
+  }
+}
