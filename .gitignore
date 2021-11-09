@@ -1,5 +1,7 @@
+# General
 node_modules
 .env
 temp.txt
-addresses.json
-whitelist.csv
+# Data
+data/ethCrossCheck/*
+data/unverifiedDeployerFinder/*

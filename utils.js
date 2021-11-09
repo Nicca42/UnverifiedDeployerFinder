@@ -8,7 +8,6 @@ async function getContractDeployer(address) {
   const response = await fetch(
     `https://optimistic.etherscan.io/address/${address}`
   );
-
   const body = await response.text();
   const searchTerm = "Creator Address'>";
   const index = body.indexOf(searchTerm);
@@ -17,6 +16,32 @@ async function getContractDeployer(address) {
     index + 42 + searchTerm.length
   );
   return deployerAddress.includes("GENESIS") ? "GENESIS" : deployerAddress;
+}
+
+async function getVerifiedContractAddresses() {
+    const response = await fetch(
+        `https://optimistic.etherscan.io/contractsVerified/3?ps=100`
+      );
+      const body = await response.text();
+      //   console.log(body)
+      const searchTerm = "0x";
+      var verifiedAddresses = new Array();
+      var i = 0;
+      var index = 0;
+      var counter = 0;
+    
+      for (let i = 0; i < 39; i++) {
+        while (true) {
+          index = body.indexOf(searchTerm, counter);
+          counter = index + 42;
+          let contractAddress = body.substring(index, index + 42);
+          if (!verifiedAddresses.includes(contractAddress)) {
+            verifiedAddresses[i] = contractAddress;
+            break;
+          }
+        }
+    }
+    return verifiedAddresses;
 }
 
 async function isVerified(address) {

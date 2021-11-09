@@ -1,16 +1,12 @@
 const { ethers } = require("ethers");
-var fs = require("fs");
 require("dotenv").config();
-const fetch = (...args) =>
-  import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
 const {
-  eoaCode,
   getContractDeployer,
   isVerified,
   isDeployerKnown,
   isEoa,
-} = require("./utils");
+} = require("../utils");
 
 const provider = new ethers.providers.JsonRpcProvider(
   `https://optimism-mainnet.infura.io/v3/${process.env.INFURA_API}`
@@ -19,7 +15,7 @@ const provider = new ethers.providers.JsonRpcProvider(
 async function run() {
   console.log("running");
 
-  var addressesJson = require("./addresses.json");
+  var addressesJson = require("../data/unverifiedDeployerFinder/addresses.json");
   let contractAddresses = addressesJson.contractAddresses;
   let deployerAddresses = addressesJson.known_deployer;
   let allProblemContracts = new Array();
